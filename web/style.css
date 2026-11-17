@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
+body {
+    background-color: #1b1340;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+h1{
+    font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif;
+    font-size: 3rem;
+}
+img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    border: 6px solid #ffd23f;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s;
+}
+img:hover{
+    transform: scale(1.05) rotate(3deg);
+}
+.ucapan {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+.teks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.merah, .hijau{
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    color: #1b1340;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.hijau {
+    background-color: #39FF14;
+}
+.merah {
+    background-color: #FF0000;
+    color: white;
+}
+.merah:hover, .hijau:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+}
+/* 1. Hiasan Tombol Pesta */
+#btn-pesta {
+    margin-top: 30px;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: bold;
+    color: #1b1340;
+    background-color: #ffd23f;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#btn-pesta:hover {
+    transform: scale(1.08);
+    background-color: #ffde6a;
+}
+
+/* 2. Potongan Kertas Confetti */
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    pointer-events: none; /* Supaya tidak menghalangi klik */
+    z-index: 9999;
+    animation: jatuh linear forwards;
+}
+
+/* 3. Animasi Gerakan Jatuh & Berputar */
+@keyframes jatuh {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+#btn-musik {
+    margin-top: 30px;
+    margin-left: 10px;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: bold;
+    color: #1b1340;
+    background-color: #3ddc97;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#btn-musik:hover {
+    transform: scale(1.08);
+    background-color: #5cebb0;
+}
+/* Tampilan Responsif untuk Layar HP */
+@media (max-width: 768px) {
+    .ucapan {
+        flex-direction: column; /* Foto di atas, kotak ucapan di bawah */
+    }
+    h1 {
+        font-size: 2.2rem;       /* Ukuran judul disesuaikan agar tidak kebesaran */
+    }
+    img {
+        width: 220px;            /* Ukuran foto dibuat sedikit lebih pas untuk layar HP */
+        height: 220px;
+    }
+}
+/* 1. Supaya tulisan, foto, dan tombol tetap berada di DEPAN bintang */
+header, .ucapan, #btn-pesta, #btn-musik {
+    position: relative;
+    z-index: 2;
+}
+
+/* 2. Titik Bintang */
+.bintang {
+    position: fixed;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none; /* Supaya tidak menghalangi klik mouse */
+    z-index: 1;           /* Di belakang konten, tapi di depan latar belakang */
+    box-shadow: 0 0 4px white;
+    animation: kelapKelip ease-in-out infinite alternate;
+}
+
+/* 3. Animasi Berkedip Lembut */
+@keyframes kelapKelip {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.4);
+        box-shadow: 0 0 8px #ffd23f; /* Sedikit pendaran cahaya emas */
+    }
+}
+/* ================= Layar Pembuka (Open Me) ================= */
+#layar-buka {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1b1340;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* Menutupi semua isi halaman sebelum dibuka */
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Saat tombol diklik, layar pembuka menghilang halus */
+#layar-buka.buka-hilang {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.konten-buka {
+    text-align: center;
+    padding: 30px;
+}
+
+.amplop-icon {
+    font-size: 5rem;
+    animation: goyang 1.5s infinite ease-in-out;
+}
+
+.konten-buka h2 {
+    font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif;
+    font-size: 2rem;
+    color: white;
+    margin: 20px 0;
+}
+
+#btn-open {
+    padding: 15px 35px;
+    font-size: 1.3rem;
+    font-family: inherit;
+    font-weight: bold;
+    color: #1b1340;
+    background-color: #ffd23f;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 25px #ffd23f;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#btn-open:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 35px #ffe07a;
+}
+
+/* Animasi Amplop Bergoyang Lucu */
+@keyframes goyang {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
